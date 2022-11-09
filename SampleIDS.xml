@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ids xmlns="http://standards.buildingsmart.org/IDS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS/ids_05.xsd">
+    <info>
+        <title>My test IDS</title>
+        <copyright>copyright</copyright>
+        <version>version</version>
+        <description>description</description>
+        <author>author@test.com</author>
+        <date>2020-01-01</date>
+        <purpose>purpose</purpose>
+        <milestone>milestone</milestone>
+    </info>
+    <specifications>
+        <specification name="My test IDS" ifcVersion="IFC2X3 IFC4" minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALLSTANDARDCASE</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property measure="IfcBoolean" uri="https://identifier.buildingsmart.org/uri/.../prop/LoadBearing" instructions="Walls need info if load bearing, even if they are not." minOccurs="1" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>EilifDemo</simpleValue>
+                    </name>
+                    <value>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="TRUE" />
+                            <xs:enumeration value="FALSE" />
+                        </xs:restriction>
+                    </value>
+                </property>
+            </requirements>
+        </specification>
+    </specifications>
+</ids>

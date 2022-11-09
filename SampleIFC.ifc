@@ -1,0 +1,18 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('ViewDefinition [CoordinationView]'),'2;1');
+FILE_NAME('','2022-10-28T09:26:25',(),(),'IfcOpenShell v0.7.0-e508fb44','IfcOpenShell v0.7.0-e508fb44','');
+FILE_SCHEMA(('IFC4'));
+ENDSEC;
+DATA;
+#1=IFCWALL('2Sc5UrK6v71xBjXf39cbDc',$,$,$,$,$,$,$,$);
+#2=IFCPROPERTYSET('0$7bojXM19OuqF4C8SAf4n',$,'MyPset',$,(#4));
+#3=IFCRELDEFINESBYPROPERTIES('3VOe_Zrtn2KRZVZLHaeIoT',$,$,$,(#1),#2);
+#4=IFCPROPERTYSINGLEVALUE('LoadBearing',$,IFCLABEL('true'),$);
+#5=IFCWALL('0IHJWTQr18MPe35cb6T6vm',$,$,$,$,$,$,$,$);
+#6=IFCPROPERTYSET('3M0uoI2QL6jANIJ0Ibrc3O',$,'MyPset',$,(#8));
+#7=IFCRELDEFINESBYPROPERTIES('1qqkLcjoj37QOi5BMwJonU',$,$,$,(#5),#6);
+#8=IFCPROPERTYSINGLEVALUE('LoadBearing',$,IFCLABEL('false'),$);
+#9=IFCWALL('2vVJJnDoHBhfLI7cTrBFLp',$,$,$,$,$,$,$,$);
+ENDSEC;
+END-ISO-10303-21;

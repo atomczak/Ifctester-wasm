@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  </head>
+
+
+  <body>
+
+    <div id='status1'>...</div>
+    </br>
+    <div id='status2'>...</div>
+    </br>
+    <div id='status3'>...</div>
+
+    <script type="text/javascript">document.querySelector("#status1").innerHTML = "Fetching pyodide";</script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/pyodide/v0.22.0a1/full/pyodide.js"></script>
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+    <script type="module">
+      
+      let pyodide = null;
+
+      async function main() {
+
+        // Load pyodide
+      
+        document.querySelector("#status1").innerHTML = "Initializing pyodide";
+        pyodide = await loadPyodide();
+
+        document.querySelector("#status1").innerHTML = "Loading package manager";
+        await pyodide.loadPackage("micropip");
+        const micropip = pyodide.pyimport("micropip");
+
+        document.querySelector("#status1").innerHTML = "Pyodide package manager up and running";
+
+        // Load IfcOpenShell
+
+        document.querySelector("#status2").innerHTML = "Loading IfcOpenShell";
+        await micropip.install("IfcOpenShell-0.7.0-py3-none-any.whl");
+        
+        document.querySelector("#status2").innerHTML = "Running Python";
+        var version1 = await pyodide.runPython(`
+            import ifcopenshell
+            ver = ifcopenshell.version
+            ver`);
+            
+        document.querySelector("#status2").innerHTML = "Loaded IfcOpenShell, version "+version1;
+        console.log(version1)
+
+        // Load IfcTester
+
+        document.querySelector("#status3").innerHTML = "Loading IfcTester";
+        await micropip.install("ifctester-1.0-py3-none-any.whl");
+        
+        document.querySelector("#status3").innerHTML = "Running Python";
+        
+        console.log(await pyodide.runPython(`
+              import os
+              len(os.listdir(os.getcwd()))
+            `));
+
+        var version2 = await pyodide.runPython(`
+            from ifctester import ids
+            #import ifcopenshell
+
+            #my_ifc = ifcopenshell.open("SampleIFC.ifc")
+            
+            #my_ids = ids.Ids("SampleIDS.xml")
+
+            my_spec = ids.Specification(name="My test IDS")
+            my_spec.name
+            `);
+            
+        document.querySelector("#status3").innerHTML = "Loaded IfcTester. Your specification is called: '"+version2+"'.";
+        console.log('DONE')
+      }
+
+      main();
+      
+    </script>
+
+
+
+  </body>
+</html>
